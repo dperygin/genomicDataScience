@@ -1,0 +1,37 @@
+# fill in your FrequentWords() function here along with any subroutines you need.
+#Input: A string Text and an integer k.
+#Output: All most frequent k-mers in Text.
+#I am running this in Jupyter Notebooks, so I did not call the interpreter
+Text = 'ACGTTGCATGTCGCATGATGCATGAGAGCT'
+k=4
+largest = {    
+}
+def FrequentWords(Text, k):
+    Text = Text
+    k = k
+    kMer = ''
+    count = 0
+    for i in range(len(Text)-(k)+1):
+        for j in range(k):
+            kMer = kMer + Text[i+j]
+        #print(kMer)
+        
+        for m in range(len(Text)-(k)):
+            if Text[m:(m+k)] == kMer:
+                count = count + 1
+                #print(count)
+            largest[kMer] = count
+        count = 0
+        kMer = ''
+    
+#Sample input text = ACGTTGCATGTCGCATGATGCATGAGAGCT k=4
+#Sample output CATG GCAT
+
+allkMers = FrequentWords(Text, k)
+sortedList = sorted(largest.items(), key=lambda x: x[1], reverse=True)
+#print(sortedList)
+largestEntry = sortedList[0]
+largestNum = largestEntry[1]
+for n in range(len(sortedList)):
+    if sortedList[n][1] == largestNum:
+        print(sortedList[n][0])

@@ -1,0 +1,24 @@
+genome = 'TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT'
+
+def MinimumSkew(Genome):
+    skew = {} #create a dictionary
+    minStr = []
+    skew[0] = 0 #set the first key and its value to 0.
+    for i in range(len(Genome)):
+        if Genome[i] == "C":
+            skew[i + 1] = skew[i] -1 #If C, the value for the ne
+        elif Genome[i] == "G":
+            skew[i +1] = skew[i] +1
+        else:
+            skew[i+1] = skew[i]
+    skew_List=list(skew.values())
+    #print(skew_List)
+    minVal = min(skew_List)
+    #print(minVal)
+    for i in range(len(skew_List)):
+        if skew_List[i]==minVal:
+            minStr.append(i)
+    return minStr
+
+skewi = MinimumSkew(genome)
+print(skewi)

@@ -1,0 +1,38 @@
+#Sample Input:
+#ATTCTGGA
+#CGCCCGAATCCAGAACGCATTCCCATATTTCGGGACCACTGGCCTCCACGGTACGGACGTCAATCAAAT
+#3
+#Sample Output:
+#6 7 26 27
+
+Text = 'CGCCCGAATCCAGAACGCATTCCCATATTTCGGGACCACTGGCCTCCACGGTACGGACGTCAATCAAAT'
+Pattern = 'ATTCTGGA'
+d = 3
+
+# Input:  Two strings p and q
+# Output: An integer value representing the Hamming Distance between p and q.
+# I kept the short variable names here in order to remain consistent with the course examples
+def HammingDistance(p, q):
+    hd = 0
+    for j in range(len(p)):
+        print(p[j], q[j])
+        if p[j]!=q[j]:
+            hd = hd + 1
+    return hd
+    
+# Input:  Strings Pattern and Text along with an integer d
+# Output: A list containing all starting positions where Pattern appears
+# as a substring of Text with at most d mismatches
+def ApproximatePatternMatching(Text, Pattern, d):
+    positions = [] # initializing list of positions
+    for i in range(len(Text)-len(Pattern)):
+        query = Text[i:(i+len(Pattern))]
+        diff = HammingDistance(Pattern,query)
+        if diff <= d:
+            positions.append(i)
+    return positions
+    
+#To check HammingDistance function uncomment the next line
+#print(HammingDistance(p,q)) 
+            
+ApproximatePatternMatching(Text, Pattern, d)
